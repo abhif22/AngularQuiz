@@ -1,0 +1,59 @@
+<div ng-controller="QuizLoginController" class="container-fluid">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+<div ng-controller="QuizLoginController">
+    <div ng-hide="quizMetrics.quizStatus">
+        <button class="btn btn-primary btn-large" ng-click="startQuiz()">Start Quiz</button>
+    </div>
+    <div ng-controller="QuizController" ng-show="quizMetrics.quizStatus" class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <h3>Progress:</h3>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:{{percentAnswered}}%;"> {{percentAnswered}}% </div>
+                </div>
+                <div class="btn-toolbar ques-pallette">
+                    <button class="btn" ng-repeat="question in Questions" ng-class="{'btn-info': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</span> </button>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="row">
+                    <h3>Legend:</h3>
+                    <button class="btn btn-info"> Answered </button>
+                    <button class="btn btn-danger"> Unanswered </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Question:{{" "+(quesActive+1)+". "}}</h3>
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h3 style="margin=0 0 0 10px;">{{Questions[quesActive].detail}}</h3>
+                        <div class="row clearfix" ng-if="Questions[quesActive].showImage">
+                            <div class="col-xs-6 float-xs-left">
+                                <div class="row">
+                                    <div class="col-xs-6 " ng-repeat="option in Questions[quesActive].options">
+                                        <h4 class="answer">{{option.optionNo+". "+option.text}}</h4> </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 float-xs-right"><img ng-src="{{Questions[quesActive].imageURL}}" width="50%" ;height="100%"> </div>
+                        </div>
+                        <div class="row" ng-if="!Questions[quesActive].showImage">
+                            <div class="col-xs-6" ng-repeat="option in Questions[quesActive].options">
+                                <h4 class="answer">{{option.optionNo+". "+option.text}}</h4> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-outline btn-success" ng-click="prevQues()">Prev Question</button>
+            <button class="btn btn-outline-success" ng-click="nextQues()">Next Question</button>
+            <button class="btn btn-outline-success" ng-click="continue()" data-toggle="tooltip" data-placement="bottom" title="Continue to next Unanswered Question">Continue..</button>
+        </div>
+        <h1>{{timer}}</h1>
+        <h2>Quiz is Going On...</h2>
+        <button class="btn btn-primary btn-large" ng-click="stopQuiz()">Stop Quiz</button>
+    </div>
+</div>
