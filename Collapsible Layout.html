@@ -51,7 +51,7 @@
                 <!-- Grey navigation panel -->
                 <ul class="collapsible popout" data-collapsible="accordion">
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
                         <div class="collapsible-body">
                             <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
                             <div class="row">
@@ -78,7 +78,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Second<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
                         <div class="collapsible-body">
                             <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
                             <div class="row">
@@ -105,7 +105,7 @@
                         </div>
                     </li>
                     <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Third<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
                         <div class="collapsible-body">
                             <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
                             <div class="row">
@@ -138,13 +138,14 @@
                 <ul class="collection with-header">
                     <li class="collection-header">
                         <h4>{{" "+(quesActive+1)+".   "}}{{Questions[quesActive].detail}}</h4></li>
+                    <li class="collection-item" ng-show="Questions[quesActive].showImage"> <img ng-src="{{Questions[quesActive].imageURL}}"> </li>
                     <li class="collection-item">
                         <p ng-repeat="option in Questions[quesActive].options" class="{{'Q'+Questions[quesActive].quesNo}}">
-                            <input name="{{Questions[quesActive].quesNo}}" id="{{'Q'+Questions[quesActive].quesNo+'option'+$index}}" type="radio" class="with-gap {{'Q'+Questions[quesActive].quesNo}}" ng-click="markAnswer($index)" ng-checked="{{ Questions[quesActive].optionSelected == $index}}" />
+                            <input name="{{Questions[quesActive].quesNo}}" id="{{'Q'+Questions[quesActive].quesNo+'option'+$index}}" type="radio" class="with-gap {{'Q'+Questions[quesActive].quesNo}}" ng-click="markAnswer($index)" ng-checked="{{Questions[quesActive].responseStatus && Questions[quesActive].optionSelected == $index}}" />
                             <label for="{{'Q'+Questions[quesActive].quesNo+'option'+$index}}">{{option.optionNo+". "+option.text}}</label>
                         </p>
                         <br>
-                        <button class="btn btn-outline btn-success" ng-click="clearResponse()">Clear Response</button>
+                        <button class="btn btn-outline btn-success" ng-disabled="!Questions[quesActive].responseStatus" ng-click="clearResponse()">Clear Response</button>
                         <button class="btn btn-outline btn-success" ng-click="prevQues()">Prev Question</button>
                         <button class="btn btn-outline btn-success" ng-click="nextQues()">Next Question</button>
                         <button class="btn btn-outline btn-success" ng-click="continue()" data-toggle="tooltip" data-placement="bottom" title="Continue to next Unanswered Question">Continue..</button>
