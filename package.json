@@ -1,0 +1,23 @@
+{
+  "name": "quiz",
+  "version": "1.0.0",
+  "description": "minimilistic angular quiz",
+  "main": "app.js",
+  "dependencies": {
+    "angular-ui-router": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhif22/AngularQuiz.git"
+  },
+  "author": "Abhishek Srivastava",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhif22/AngularQuiz/issues"
+  },
+  "homepage": "https://github.com/abhif22/AngularQuiz#readme"
+}

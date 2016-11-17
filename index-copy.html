@@ -49,15 +49,16 @@
         <div class="row">
             <div class="col s3" style="background:white;">
                 <!-- Grey navigation panel -->
+                <!--<question-pallette></question-pallette>-->
                 <ul class="collapsible popout" data-collapsible="accordion">
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
+                    <li ng-repeat="section in sections">
+                        <div class="collapsible-header"><i class="material-icons" id="{{activeSection.sectionTitle}}">filter_drama</i><a ng-click="changeSection($index)">{{section.sectionTitle}}</a> <span class="new badge" data-badge-caption=" ">{{section.answered}}/{{section.sectionLength}}</span></div>
                         <div class="collapsible-body">
-                            <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
+                            <h5 style="color:black;text-align:center;">Progress: {{section.answered}}/{{section.sectionLength}} </h5>
                             <div class="row">
                                 <div class="col s12">
                                     <div class="progress">
-                                        <div class="determinate" style="width: {{percentAnswered}}%;margin-top:0px;"></div>
+                                        <div class="determinate" style="width: {{section.answered/section.sectionLength*100}}%;margin-top:0px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -67,61 +68,7 @@
                                 <label for="test3"> : Answered</label>
                                 <input class="with-gap" type="radio" />
                                 <label for="test3"> : Not Answered</label>
-                            </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in Questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
-                            <br>
-                            <p>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Answered</label>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Not Answered</label>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Second<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
-                        <div class="collapsible-body">
-                            <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
-                            <div class="row">
-                                <div class="col s12">
-                                    <div class="progress">
-                                        <div class="determinate" style="width: {{percentAnswered}}%;margin-top:0px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 style="color:black;text-align:center;">Questions:</h3>
-                            <p>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Answered</label>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Not Answered</label>
-                            </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in Questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
-                            <br>
-                            <p>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Answered</label>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Not Answered</label>
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="collapsible-header"><i class="material-icons">filter_drama</i>Third<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
-                        <div class="collapsible-body">
-                            <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
-                            <div class="row">
-                                <div class="col s12">
-                                    <div class="progress">
-                                        <div class="determinate" style="width: {{percentAnswered}}%;margin-top:0px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 style="color:black;text-align:center;">Questions:</h3>
-                            <p>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Answered</label>
-                                <input class="with-gap" type="radio" />
-                                <label for="test3"> : Not Answered</label>
-                            </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in Questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
+                            </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in section.questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
                             <br>
                             <p>
                                 <input class="with-gap" type="radio" />
@@ -132,20 +79,20 @@
                         </div>
                     </li>
                 </ul>
-                <!--                <div class="ques-pallette"> </div>--></div>
+            </div>
             <div class="col s9">
                 <!-- Teal page content  -->
                 <ul class="collection with-header">
                     <li class="collection-header">
-                        <h4>{{" "+(quesActive+1)+".   "}}{{Questions[quesActive].detail}}</h4></li>
-                    <li class="collection-item" ng-show="Questions[quesActive].showImage"> <img ng-src="{{Questions[quesActive].imageURL}}"> </li>
+                        <h4>{{" "+(quesActive+1)+".   "}}{{sections[activeSection].questions[quesActive].detail}}</h4></li>
+                    <li class="collection-item" ng-show="sections[activeSection].questions[quesActive].showImage"> <img ng-src="{{sections[activeSection].questions[quesActive].imageURL}}"> </li>
                     <li class="collection-item">
-                        <p ng-repeat="option in Questions[quesActive].options" class="{{'Q'+Questions[quesActive].quesNo}}">
-                            <input name="{{Questions[quesActive].quesNo}}" id="{{'Q'+Questions[quesActive].quesNo+'option'+$index}}" type="radio" class="with-gap {{'Q'+Questions[quesActive].quesNo}}" ng-click="markAnswer($index)" ng-checked="{{Questions[quesActive].responseStatus && Questions[quesActive].optionSelected == $index}}" />
-                            <label for="{{'Q'+Questions[quesActive].quesNo+'option'+$index}}">{{option.optionNo+". "+option.text}}</label>
+                        <p ng-repeat="option in sections[activeSection].questions[quesActive].options" class="{{'Q'+sections[activeSection].questions[quesActive].quesNo}}">
+                            <input name="{{sections[activeSection].questions[quesActive].quesNo}}" id="{{'Q'+sections[activeSection].questions[quesActive].quesNo+'option'+$index}}" type="radio" class="with-gap {{'Q'+sections[activeSection].questions[quesActive].quesNo}}" ng-click="markAnswer($index)" ng-checked="{{sections[activeSection].questions[quesActive].responseStatus && Questions[quesActive].optionSelected == $index}}" />
+                            <label for="{{'Q'+sections[activeSection].questions[quesActive].quesNo+'option'+$index}}">{{option.optionNo+". "+option.text}}</label>
                         </p>
                         <br>
-                        <button class="btn btn-outline btn-success" ng-disabled="!Questions[quesActive].responseStatus" ng-click="clearResponse()">Clear Response</button>
+                        <button class="btn btn-outline btn-success" ng-disabled="!sections[activeSection].questions[quesActive].responseStatus" ng-click="clearResponse()">Clear Response</button>
                         <button class="btn btn-outline btn-success" ng-click="prevQues()">Prev Question</button>
                         <button class="btn btn-outline btn-success" ng-click="nextQues()">Next Question</button>
                         <button class="btn btn-outline btn-success" ng-click="continue()" data-toggle="tooltip" data-placement="bottom" title="Continue to next Unanswered Question">Continue..</button>
@@ -157,6 +104,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script type="text/javascript" src="js/hammer.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script src="js/app.js"></script>

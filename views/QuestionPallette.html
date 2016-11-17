@@ -1,0 +1,86 @@
+<div class="col s3" style="background:white;">
+    <!-- Grey navigation panel -->
+    <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>First<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
+            <div class="collapsible-body">
+                <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="progress">
+                            <div class="determinate" style="width: {{percentAnswered}}%;margin-top:0px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <h3 style="color:black;text-align:center;">Questions:</h3>
+                <p>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Answered</label>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Not Answered</label>
+                </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in Questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
+                <br>
+                <p>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Answered</label>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Not Answered</label>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Second<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
+            <div class="collapsible-body">
+                <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="progress">
+                            <div class="determinate" style="width: {{percentAnswered}}%;margin-top:0px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <h3 style="color:black;text-align:center;">Questions:</h3>
+                <p>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Answered</label>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Not Answered</label>
+                </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in Questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
+                <br>
+                <p>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Answered</label>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Not Answered</label>
+                </p>
+            </div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Third<span class="new badge" data-badge-caption=" ">{{totalQuestions-notAnswered}}/{{totalQuestions}}</span></div>
+            <div class="collapsible-body">
+                <h5 style="color:black;text-align:center;">Progress: {{(totalQuestions-notAnswered)}}/{{totalQuestions}} </h5>
+                <div class="row">
+                    <div class="col s12">
+                        <div class="progress">
+                            <div class="determinate" style="width: {{percentAnswered}}%;margin-top:0px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <h3 style="color:black;text-align:center;">Questions:</h3>
+                <p>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Answered</label>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Not Answered</label>
+                </p> <a class="btn-floating btn-small btn-outline ghost-btn" ng-repeat="question in Questions" ng-class="{'teal accent-2': question.responseStatus, 'btn-danger': !question.responseStatus}"><span class="badge" ng-click="switchQues(question.quesNo)">{{question.quesNo}}</a>
+                <br>
+                <p>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Answered</label>
+                    <input class="with-gap" type="radio" />
+                    <label for="test3"> : Not Answered</label>
+                </p>
+            </div>
+        </li>
+    </ul>
+    <!--                <div class="ques-pallette"> </div>--></div>
